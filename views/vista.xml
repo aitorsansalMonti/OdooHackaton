@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <record id="action_promocions" model="ir.actions.act_window">
+            <field name="name">Promocions i Ofertes</field>
+            <field name="res_model">promocions.i.ofertes</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="view_id" ref="view_promocions_kanban"/>
+        </record>
+
+        <menuitem id="menu_promocions_root" name="Promocions i Ofertes" parent="base.menu_config" sequence="10"/>
+        <menuitem id="menu_promocions" name="Promocions i Ofertes dels Productes" parent="menu_promocions_root" action="action_promocions" sequence="10"/>
+
+        <record id="view_promocions_kanban" model="ir.ui.view">
+            <field name="name">promocions.i.ofertes.kanban</field>
+            <field name="model">promocions.i.ofertes</field>
+            <field name="type">kanban</field>
+            <field name="arch" type="xml">
+                <kanban string="Promocions i Ofertes">
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="product_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="discount"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="o_kanban_record">
+                                <div class="o_kanban_details">
+                                    <strong><field name="name"/></strong>
+                                    <div><field name="description"/></div>
+                                    <div><field name="product_id"/></div>
+                                    <div><field name="start_date"/></div>
+                                    <div><field name="end_date"/></div>
+                                    <div><field name="discount"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_promocions_form" model="ir.ui.view">
+            <field name="name">promocions.i.ofertes.form</field>
+            <field name="model">promocions.i.ofertes</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Promocions i Ofertes">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="product_id"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="discount"/>
+                            <field name="state"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>
