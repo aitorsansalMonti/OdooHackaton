@@ -1,6 +1,6 @@
 from odoo import models, fields, api
 
-class PromocionsIOfertes(models.Model):
+class GestorDeProjectes(models.Model):
     _name = 'gestor.projectes'
     _description = 'Gestor de Projectes'
 
@@ -30,7 +30,7 @@ class PromocionsIOfertes(models.Model):
             vals['state'] = 'notStarted'
 
         # Call the super method to create the record
-        record = super(PromocionsIOfertes, self).create(vals)
+        record = super(GestorDeProjectes, self).create(vals)
 
         # Custom logic after record creation (if needed)
         # Example: Log a message
