@@ -1,7 +1,7 @@
 <odoo>
     <data>
         <record id="action_promocions" model="ir.actions.act_window">
-            <field name="name">Gestor Projectes</field>
+            <field name="name">Gestor de Projectes</field>
             <field name="res_model">gestor.projectes</field>
             <field name="view_mode">kanban,form</field>
             <field name="view_id" ref="view_promocions_kanban"/>
