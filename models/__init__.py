@@ -1,1 +1,1 @@
-from . import __promocionsIOfertesEspecials__
+from . import _gestorProjectes_
