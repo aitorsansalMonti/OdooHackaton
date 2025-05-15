@@ -37,6 +37,14 @@
             <field name="model">gestor.projectes</field>
             <field name="arch" type="xml">
                 <form string="Tasca">
+                    <header>
+                        <!-- other buttons … -->
+                        <button name="action_show_pressupost"
+                                type="object"
+                                string="Pressupost"
+                                class="btn-primary"
+                                attrs="{'invisible': [('state', '!=', 'completed')]}"/>
+                    </header>
                     <sheet>
                         <group>
                             <field name="tipus"/>

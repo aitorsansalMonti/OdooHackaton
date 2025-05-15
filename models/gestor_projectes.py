@@ -25,6 +25,16 @@ class gestor_projectes(models.Model):
     worksDone = fields.Text('Obres Realitzades')
     hoursWorked = fields.Float('Hores Treballades')
     usuari = fields.Many2one('res.users', string='Usuari', default=lambda self: self.env.user)
+    preu_hora = fields.Float(
+    string="Preu / hora",
+    related="tipus_id.preu_hora",
+    readonly=True,
+    store=True)
+    import_pressupost = fields.Monetary(
+    string="Import pressupost",
+    currency_field="company_currency",
+    compute="_compute_import_pressupost",
+    store=True)
 
     @api.model
     def create(self, vals):
@@ -50,3 +60,34 @@ class gestor_projectes(models.Model):
             self.start_date = False
             self.end_date = False
 
+    # ----------------------------------------------------------
+    # COMPUTE
+    # ----------------------------------------------------------
+    @api.depends("hoursWorked ", "preu_hora")
+    def _compute_import_pressupost(self):
+        for rec in self:
+            rec.import_pressupost = rec.hoursWorked  * rec.preu_hora
+
+    # ----------------------------------------------------------
+    # BUTTON
+    # ----------------------------------------------------------
+    def action_show_pressupost(self):
+        """Show a popup with the amount to pay."""
+        self.ensure_one()
+        if self.state != "completed":
+            raise UserError(_("You can only create a pressupost when the project is completed."))
+
+        message = _(
+            "Have to pay %(amount).2f € for %(hours).2f hours",
+            amount=self.import_pressupost,
+            hours=self.hores_treballades,
+        )
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": _("Pressupost"),
+                "message": message,
+                "sticky": True,
+            },
+        }
