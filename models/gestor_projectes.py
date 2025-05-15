@@ -1,6 +1,6 @@
-from odoo import models, fields, api  # type: ignore
+from odoo import models, fields, api
 
-class GestorDeProjectes(models.Model):
+class gestor_projectes(models.Model):
     _name = 'gestor.projectes'
     _description = 'Gestor de Projectes'
 
@@ -27,7 +27,7 @@ class GestorDeProjectes(models.Model):
             vals['state'] = 'notStarted'
 
         # Call the super method to create the record
-        record = super(GestorDeProjectes, self).create(vals)
+        record = super(gestor_projectes, self).create(vals)
 
         return record
     

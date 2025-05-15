@@ -1,5 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
+        <record id="action_promocions" model="ir.actions.act_window">
+            <field name="name">Gestor de Projectes</field>
+            <field name="res_model">gestor.projectes</field>
+            <field name="view_mode">kanban,form</field>
+        </record>
+
+        <record id="view_incidencies_kanban" model="ir.ui.view">
+            <field name="name">gestor.projectes.kanban</field>
+            <field name="model">gestor.projectes</field>
+            <field name="type">kanban</field>
+            <field name="arch" type="xml">
+                <kanban string="Gestio de Projectes">
+                    <field name="description"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="state"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="o_kanban_record">
+                                <div class="o_kanban_details">
+                                    <div><field name="description"/></div>
+                                    <div><field name="start_date"/></div>
+                                    <div><field name="end_date"/></div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
         <record id="action_projectes" model="ir.actions.act_window">
             <field name="name">Gestor de Projectes</field>
             <field name="res_model">gestor.projectes</field>
@@ -52,8 +84,11 @@
             </field>
         </record>
 
-        <menuitem id="projectes_main_menu" name="Gestor Projectes"/>
+        <!-- <menuitem id="projectes_main_menu" name="Gestor Projectes"/>
         <menuitem id="projectes_submenu" name="Projectes" parent="projectes_main_menu" 
-        action="action_projectes"/>
+        action="action_projectes"/> -->
+        <menuitem id="menu_promocions_root" name="Gestor de Projectes" parent="base.menu_config" sequence="10"/>
+        <menuitem id="menu_promocions" name="Gestor de Projectes" parent="menu_promocions_root" action="action_promocions" sequence="10"/>
+    
     </data>
 </odoo>

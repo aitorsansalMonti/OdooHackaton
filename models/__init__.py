@@ -1,1 +1,1 @@
-from . import _gestorProjectes_
+from . import gestor_projectes
