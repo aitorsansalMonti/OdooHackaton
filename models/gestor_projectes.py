@@ -14,10 +14,12 @@ class gestor_projectes(models.Model):
         ('inProgress', 'En Progrés'),
         ('completed', 'Completat')
     ], string='Estat', required=True)
+    observations = fields.Text('Observacions')
+    worksDone = fields.Text('Obres Realitzades')
+    hoursWorked = fields.Float('Hores Treballades')
 
     @api.model
     def create(self, vals):
-
         if 'creation_date' not in vals or not vals['creation_date']:
             vals['creation_date'] = fields.Date.today()
         # Set default state if not provided
