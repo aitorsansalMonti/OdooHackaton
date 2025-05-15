@@ -14,9 +14,10 @@ class gestor_projectes(models.Model):
         ('inProgress', 'En Progrés'),
         ('completed', 'Completat')
     ], string='Estat', required=True)
-    observations = fields.Text('Observacions')
+    observacions = fields.Text('Observacions')
     worksDone = fields.Text('Obres Realitzades')
     hoursWorked = fields.Float('Hores Treballades')
+    usuari = fields.Many2one('res.users', string='Usuari', default=lambda self: self.env.user)
 
     @api.model
     def create(self, vals):
