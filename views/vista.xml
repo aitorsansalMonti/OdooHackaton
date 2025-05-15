@@ -15,9 +15,15 @@
                         <t t-name="kanban-box">
                             <div class="o_kanban_record">
                                 <div class="o_kanban_details">
-                                    <div><field name="description"/></div>
-                                    <div><field name="start_date"/></div>
-                                    <div><field name="end_date"/></div>
+                                    <div>
+                                        <field name="description"/>
+                                    </div>
+                                    <div>
+                                        <field name="start_date"/>
+                                    </div>
+                                    <div>
+                                        <field name="end_date"/>
+                                    </div>
                                 </div>
                             </div>
                         </t>
@@ -57,16 +63,54 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_details">
-                                <div>Tipus: <field name="tipus"/></div>
-                                <div>Client: <field name="usuari"/></div>
-                                <div>Data Creació: <field name="creation_date"/></div>
-                                <div>Estat: <field name="state"/></div>
-                                <div>Descripció: <field name="description"/></div>
+                                <div>Tipus: <field name="tipus"/>
+                                </div>
+                                <div>Client: <field name="usuari"/>
+                                </div>
+                                <div>Data Creació: <field name="creation_date"/>
+                                </div>
+                                <div>Estat: <field name="state"/>
+                                </div>
+                                <div>Descripció: <field name="description"/>
+                                </div>
                             </div>
                         </t>
                     </templates>
                 </kanban>
             </field>
+        </record>
+
+        
+        <record id="view_create_projectes_form" model="ir.ui.view">
+            <field name="name">gestor.form</field>
+            <field name="model">gestor.projectes</field>
+            <field name="arch" type="xml">
+                <form string="Tasca">
+                    <sheet>
+                        <group>
+                            <field name="tipus"/>
+                            <field name="usuari"/>
+                            <field name="description"/>
+                            <field name="creation_date" readonly="1"/>
+                            <field name="observacions"/>
+                            <field name="state"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="hoursWorked"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_crm_offer_new" model="ir.actions.act_window">
+            <field name="name">Create Offer</field>
+            <field name="res_model">crm.offer</field>
+            <field name="view_mode">form</field>
+            <field name="view_ids" eval="[
+            (5, 0, 0),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('gestor_projectes.view_create_projectes_form')})
+        ]"/>
         </record>
 
         <record id="action_promocions" model="ir.actions.act_window">
@@ -77,10 +121,9 @@
 
 
         <!-- <menuitem id="projectes_main_menu" name="Gestor Projectes"/>
-        <menuitem id="projectes_submenu" name="Projectes" parent="projectes_main_menu" 
-        action="action_projectes"/> -->
+        <menuitem id="projectes_submenu" name="Projectes" parent="projectes_main_menu" action="action_projectes"/> -->
         <menuitem id="menu_promocions_root" name="Gestor de Projectes" parent="base.menu_config" sequence="10"/>
         <menuitem id="menu_promocions" name="Gestor de Projectes" parent="menu_promocions_root" action="action_promocions" sequence="10"/>
-    
+
     </data>
 </odoo>
