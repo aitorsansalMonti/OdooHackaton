@@ -1,5 +1,5 @@
 {
-    'name': 'Promocions i Ofertes Especials',
+    'name': 'Gestor de Projectes',
     'version': '1.0',
     'summary': 'Crea promocions especials durant un periode de temps per qualsevol producte',
     'category': 'Custom',
