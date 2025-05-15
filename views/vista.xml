@@ -45,8 +45,8 @@
                             <field name="creation_date" readonly="1"/>
                             <field name="observacions"/>
                             <field name="state"/>
-                            <field name="start_date"/>
-                            <field name="end_date"/>
+                            <field name="start_date" readonly="1"/>
+                            <field name="end_date" readonly="1"/>
                             <field name="hoursWorked"/>
                         </group>
                     </sheet>
@@ -70,7 +70,7 @@
                             <div class="oe_kanban_details">
                                 <div>Tipus: <field name="tipus"/>
                                 </div>
-                                <div>Client: <field name="usuari"/>
+                                <div>Treaballador: <field name="usuari"/>
                                 </div>
                                 <div>Data Creació: <field name="creation_date"/>
                                 </div>
@@ -109,22 +109,27 @@
             <field name="view_mode">form</field>
             <field name="view_ids" eval="[
             (5, 0, 0),
-            (0, 0, {'view_mode': 'form', 'view_id': ref('gestordeprojectes.view_create_projectes_form')})
+            (0, 0, {'view_mode': 'form', 'view_id': ref('GestorDeProjectes.view_create_projectes_form')})
         ]"/>
         </record>
 
-        <record id="action_promocions" model="ir.actions.act_window">
+        <!-- views/vista.xml  (extract) -->
+        <record id="action_projects" model="ir.actions.act_window">
             <field name="name">Gestor de Projectes</field>
             <field name="res_model">gestor.projectes</field>
             <field name="view_mode">kanban,form</field>
+
+            <!-- 👇 add this line -->
+            <field name="domain">[('usuari', '=', uid)]</field>
         </record>
+
 
 
         <!-- <menuitem id="projectes_main_menu" name="Gestor Projectes"/>
         <menuitem id="projectes_submenu" name="Projectes" parent="projectes_main_menu" action="action_projectes"/> -->
         <menuitem id="menu_gestor_projectes_root" name="Gestor de Projectes"/>
         <menuitem id="menu_promocions_root" name="Gestor de Projectes" parent="menu_gestor_projectes_root" sequence="10"/>
-        <menuitem id="menu_promocions" name="Gestor de Projectes" parent="menu_gestor_projectes_root" action="action_promocions" sequence="10"/>
+        <menuitem id="menu_promocions" name="Gestor de Projectes" parent="menu_gestor_projectes_root" action="action_projects" sequence="10"/>
         <menuitem id="menu_create_new_project" name="Crear nou projecte" parent="menu_gestor_projectes_root" action="action_project_new"/>
     </data>
 </odoo>

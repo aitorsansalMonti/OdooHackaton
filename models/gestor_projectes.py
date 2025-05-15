@@ -45,4 +45,8 @@ class gestor_projectes(models.Model):
             self.end_date = fields.Date.today()
         elif self.state == 'inProgress':
             self.start_date = fields.Date.today()
+            self.end_date = False
+        else:
+            self.start_date = False
+            self.end_date = False
 
