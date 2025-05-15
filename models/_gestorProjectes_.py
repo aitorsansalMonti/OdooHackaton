@@ -14,6 +14,9 @@ class GestorDeProjectes(models.Model):
         ('inProgress', 'En Progrés'),
         ('completed', 'Completat')
     ], string='Estat', required=True)
+    observations = fields.Text('Observacions')
+    worksDone = fields.Text('Obres Realitzades')
+    hoursWorked = fields.Float('Hores Treballades')
 
     @api.onchange('end_date')
     def _check_expiration(self):
