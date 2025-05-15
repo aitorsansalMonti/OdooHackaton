@@ -4,8 +4,15 @@ class gestor_projectes(models.Model):
     _name = 'gestor.projectes'
     _description = 'Gestor de Projectes'
 
-    tipus = fields.Selection([])
-    description = fields.Text('Descripció de la Promoció')
+    tipus = fields.Selection([
+        ('xapa', 'Xapa'),
+        ('pintura', 'Pintura'),
+        ('mecanica', 'Mecanica'),
+        ('electrica', 'Electrica'),
+        ('manteniment', 'Manteniment'),
+        ('altres', 'Altres')
+    ])
+    description = fields.Text('Descripció del problema')
     creation_date = fields.Date('Data de creació')
     start_date = fields.Date('Data d\'Inici')
     end_date = fields.Date('Data de Fi')
@@ -13,7 +20,7 @@ class gestor_projectes(models.Model):
         ('notStarted', 'No Iniciat'),
         ('inProgress', 'En Progrés'),
         ('completed', 'Completat')
-    ], string='Estat', required=True)
+    ], string='Estat', required=True, default='notStarted')
     observacions = fields.Text('Observacions')
     worksDone = fields.Text('Obres Realitzades')
     hoursWorked = fields.Float('Hores Treballades')
