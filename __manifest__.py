@@ -3,7 +3,7 @@
     'version': '1.0',
     'summary': 'Crea promocions especials durant un periode de temps per qualsevol producte',
     'category': 'Custom',
-    'author': 'Jaume Rotger i Arnau Guerra',
+    'author': 'Aitor Sánchez, Younes Chatib, Mel Rosalinda, Jaume Rotger',
     'depends': ['base', 'sale'],
     'data': [
         'views/vista.xml',

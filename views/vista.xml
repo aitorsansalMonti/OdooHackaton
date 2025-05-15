@@ -103,13 +103,13 @@
             </field>
         </record>
 
-        <record id="action_crm_offer_new" model="ir.actions.act_window">
-            <field name="name">Create Offer</field>
-            <field name="res_model">crm.offer</field>
+        <record id="action_project_new" model="ir.actions.act_window">
+            <field name="name">Create Project</field>
+            <field name="res_model">gestor.projectes</field>
             <field name="view_mode">form</field>
             <field name="view_ids" eval="[
             (5, 0, 0),
-            (0, 0, {'view_mode': 'form', 'view_id': ref('gestor_projectes.view_create_projectes_form')})
+            (0, 0, {'view_mode': 'form', 'view_id': ref('gestordeprojectes.view_create_projectes_form')})
         ]"/>
         </record>
 
@@ -122,8 +122,9 @@
 
         <!-- <menuitem id="projectes_main_menu" name="Gestor Projectes"/>
         <menuitem id="projectes_submenu" name="Projectes" parent="projectes_main_menu" action="action_projectes"/> -->
-        <menuitem id="menu_promocions_root" name="Gestor de Projectes" parent="base.menu_config" sequence="10"/>
-        <menuitem id="menu_promocions" name="Gestor de Projectes" parent="menu_promocions_root" action="action_promocions" sequence="10"/>
-
+        <menuitem id="menu_gestor_projectes_root" name="Gestor de Projectes"/>
+        <menuitem id="menu_promocions_root" name="Gestor de Projectes" parent="menu_gestor_projectes_root" sequence="10"/>
+        <menuitem id="menu_promocions" name="Gestor de Projectes" parent="menu_gestor_projectes_root" action="action_promocions" sequence="10"/>
+        <menuitem id="menu_create_new_project" name="Crear nou projecte" parent="menu_gestor_projectes_root" action="action_project_new"/>
     </data>
 </odoo>
